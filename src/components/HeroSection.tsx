@@ -4,10 +4,51 @@ import heroImage from '@/assets/hero-printing.jpg';
 
 const HeroSection = () => {
   const [isVisible, setIsVisible] = useState(false);
+  const [currentServiceIndex, setCurrentServiceIndex] = useState(0);
+  const [displayedText, setDisplayedText] = useState('');
+  const [isTyping, setIsTyping] = useState(true);
+
+  const services = [
+    'Wedding Cards',
+    'Visiting Cards', 
+    'Flex Design & Printing',
+    'Offset Printing',
+    'Brochures & Catalogs',
+    'Diaries & Notebooks',
+    'Corporate Branding'
+  ];
 
   useEffect(() => {
     setIsVisible(true);
   }, []);
+
+  useEffect(() => {
+    const currentService = services[currentServiceIndex];
+    let timeoutId: NodeJS.Timeout;
+
+    if (isTyping) {
+      if (displayedText.length < currentService.length) {
+        timeoutId = setTimeout(() => {
+          setDisplayedText(currentService.slice(0, displayedText.length + 1));
+        }, 100);
+      } else {
+        timeoutId = setTimeout(() => {
+          setIsTyping(false);
+        }, 2000);
+      }
+    } else {
+      if (displayedText.length > 0) {
+        timeoutId = setTimeout(() => {
+          setDisplayedText(displayedText.slice(0, -1));
+        }, 50);
+      } else {
+        setCurrentServiceIndex((prev) => (prev + 1) % services.length);
+        setIsTyping(true);
+      }
+    }
+
+    return () => clearTimeout(timeoutId);
+  }, [displayedText, isTyping, currentServiceIndex, services]);
 
   const scrollToServices = () => {
     document.getElementById('services')?.scrollIntoView({ behavior: 'smooth' });
@@ -47,24 +88,43 @@ const HeroSection = () => {
       {/* Main Content */}
       <div className="relative z-10 text-center text-white px-6 max-w-6xl mx-auto">
         {/* Company Name */}
-        <div className={`${isVisible ? 'hero-content-reveal' : 'opacity-0'} mb-4`}>
+        <div className={`${isVisible ? 'hero-content-reveal' : 'opacity-0'} mb-6`}>
           <h1 className="font-display text-6xl md:text-8xl lg:text-9xl font-bold leading-none tracking-tight">
             <span className="text-shimmer block">Karunya</span>
           </h1>
         </div>
         
         {/* Tagline */}
-        <div className={`${isVisible ? 'hero-content-reveal delay-1' : 'opacity-0'} mb-2`}>
-          <h2 className="font-script text-4xl md:text-6xl lg:text-7xl text-accent mb-8 leading-relaxed">
+        <div className={`${isVisible ? 'hero-content-reveal delay-1' : 'opacity-0'} mb-8`}>
+          <h2 className="font-script text-4xl md:text-6xl lg:text-7xl text-accent leading-relaxed">
             Offset Printers
           </h2>
         </div>
         
-        {/* Description */}
-        <div className={`${isVisible ? 'hero-content-reveal delay-2' : 'opacity-0'} mb-12`}>
-          <p className="font-body text-lg md:text-xl lg:text-2xl mb-4 opacity-95 max-w-4xl mx-auto leading-relaxed">
-            <span className="font-medium text-accent">Crafting Excellence in Every Print</span>
+        {/* Engaging Quote */}
+        <div className={`${isVisible ? 'hero-content-reveal delay-2' : 'opacity-0'} mb-8`}>
+          <p className="font-display text-xl md:text-2xl lg:text-3xl italic text-white/90 max-w-4xl mx-auto leading-relaxed">
+            "Where Every Print Tells a Story, Every Design Speaks Excellence"
           </p>
+        </div>
+        
+        {/* Typing Animation for Services */}
+        <div className={`${isVisible ? 'hero-content-reveal delay-3' : 'opacity-0'} mb-12`}>
+          <div className="text-center">
+            <p className="font-body text-lg md:text-xl text-white/80 mb-4">
+              Specializing in
+            </p>
+            <div className="font-body text-2xl md:text-3xl lg:text-4xl font-semibold text-accent min-h-[3rem] flex items-center justify-center">
+              <span className="relative">
+                {displayedText}
+                <span className="animate-pulse text-white/70 ml-1">|</span>
+              </span>
+            </div>
+          </div>
+        </div>
+        
+        {/* Description */}
+        <div className={`${isVisible ? 'hero-content-reveal delay-4' : 'opacity-0'} mb-12`}>
           <p className="font-body text-base md:text-lg opacity-85 max-w-3xl mx-auto leading-relaxed">
             From elegant wedding invitations to powerful corporate branding, we transform your vision into 
             stunning printed reality with professional quality and artistic excellence.
@@ -72,7 +132,7 @@ const HeroSection = () => {
         </div>
 
         {/* Call-to-Action Buttons */}
-        <div className={`${isVisible ? 'hero-content-reveal delay-3' : 'opacity-0'} flex flex-col sm:flex-row gap-6 justify-center items-center`}>
+        <div className={`${isVisible ? 'hero-content-reveal delay-5' : 'opacity-0'} flex flex-col sm:flex-row gap-6 justify-center items-center`}>
           <Button
             onClick={scrollToServices}
             size="lg"
@@ -101,7 +161,7 @@ const HeroSection = () => {
         </div>
         
         {/* Key Features Tags */}
-        <div className={`${isVisible ? 'hero-content-reveal delay-3' : 'opacity-0'} mt-16 flex flex-wrap justify-center gap-4`}>
+        <div className={`${isVisible ? 'hero-content-reveal delay-6' : 'opacity-0'} mt-16 flex flex-wrap justify-center gap-4`}>
           {['Premium Quality', 'Fast Delivery', 'Custom Design', 'Expert Craftsmanship'].map((feature, index) => (
             <span 
               key={feature}
