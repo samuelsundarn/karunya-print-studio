@@ -140,8 +140,11 @@ const ServicesSection = () => {
               >
                 Get Free Quote
               </button>
-              <button className="border border-border hover:bg-muted px-6 py-3 rounded-lg font-medium transition-colors duration-300">
-                View Portfolio
+              <button 
+                onClick={() => window.location.href = '/customers'}
+                className="border border-border hover:bg-muted px-6 py-3 rounded-lg font-medium transition-colors duration-300"
+              >
+                View Success Stories
               </button>
             </div>
           </div>

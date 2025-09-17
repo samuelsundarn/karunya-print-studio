@@ -25,9 +25,9 @@ const Footer = () => {
   ];
 
   const quickLinks = [
-    { name: 'About Us', href: '#' },
+    { name: 'About Us', href: '/about' },
     { name: 'Our Services', href: '#services' },
-    { name: 'Portfolio', href: '#' },
+    { name: 'Success Stories', href: '/customers' },
     { name: 'Contact Us', href: '#contact' },
     { name: 'Get Quote', href: '#contact' }
   ];
@@ -101,16 +101,21 @@ const Footer = () => {
             <ul className="space-y-3">
               {quickLinks.map((link, index) => (
                 <li key={index}>
-                  <button 
-                    onClick={() => {
-                      if (link.href.startsWith('#')) {
-                        document.getElementById(link.href.substring(1))?.scrollIntoView({ behavior: 'smooth' });
-                      }
-                    }}
-                    className="text-background/80 hover:text-accent transition-colors duration-300 text-sm"
-                  >
-                    {link.name}
-                  </button>
+                  {link.href.startsWith('#') ? (
+                    <button 
+                      onClick={() => document.getElementById(link.href.substring(1))?.scrollIntoView({ behavior: 'smooth' })}
+                      className="text-background/80 hover:text-accent transition-colors duration-300 text-sm"
+                    >
+                      {link.name}
+                    </button>
+                  ) : (
+                    <a 
+                      href={link.href}
+                      className="text-background/80 hover:text-accent transition-colors duration-300 text-sm block"
+                    >
+                      {link.name}
+                    </a>
+                  )}
                 </li>
               ))}
             </ul>

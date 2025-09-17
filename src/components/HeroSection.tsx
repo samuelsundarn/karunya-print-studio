@@ -41,15 +41,15 @@ const HeroSection = () => {
       {/* Header Navigation */}
       <header className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-md border-b border-border">
         <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
-          {/* Brand Text */}
-          <div className="font-handwriting text-2xl text-primary">
+          {/* Brand Text - Home Button */}
+          <a href="/" className="font-handwriting text-2xl text-primary hover:text-primary/80 transition-colors cursor-pointer">
             Karunya Offset Printers
-          </div>
+          </a>
           
           {/* Navigation */}
           <nav className="hidden md:flex items-center gap-8">
             <a href="#services" className="font-body text-foreground hover:text-primary transition-colors">Services</a>
-            <a href="#portfolio" className="font-body text-foreground hover:text-primary transition-colors">Portfolio</a>
+            <a href="/customers" className="font-body text-foreground hover:text-primary transition-colors">Customers</a>
             <Button 
               variant="outline" 
               onClick={handleRequestCallback}
@@ -58,7 +58,7 @@ const HeroSection = () => {
               Request Callback
             </Button>
             <a href="#contact" className="font-body text-foreground hover:text-primary transition-colors">Contact</a>
-            <a href="#about" className="font-body text-foreground hover:text-primary transition-colors">About</a>
+            <a href="/about" className="font-body text-foreground hover:text-primary transition-colors">About</a>
           </nav>
 
           {/* Mobile Menu Button */}
