@@ -32,10 +32,6 @@ const HeroSection = () => {
     return () => clearTimeout(timer);
   }, [charIndex, isDeleting, wordIndex, words]);
 
-  const scrollToServices = () => {
-    document.getElementById('services')?.scrollIntoView({ behavior: 'smooth' });
-  };
-
   const handleRequestCallback = () => {
     setShowForm(true);
   };
