@@ -6,16 +6,16 @@
 
 @layer base {
   :root {
-    /* Primary Brand Colors - Deep Professional Blues */
-    --background: 0 0% 100%;
-    --foreground: 215 25% 15%;
+    /* Light Cream & Elegant Color Palette */
+    --background: 45 30% 96%;
+    --foreground: 35 25% 15%;
 
     /* Card & Surface Colors */
-    --card: 0 0% 100%;
-    --card-foreground: 215 25% 15%;
+    --card: 45 30% 98%;
+    --card-foreground: 35 25% 15%;
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 215 25% 15%;
+    --popover: 45 30% 98%;
+    --popover-foreground: 35 25% 15%;
 
     /* Primary - Deep Professional Blue */
     --primary: 215 85% 25%;
@@ -158,6 +158,10 @@
   
   .font-body {
     font-family: 'Inter', sans-serif;
+  }
+  
+  .font-handwriting {
+    font-family: 'Caveat', cursive;
   }
 }
 
