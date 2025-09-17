@@ -1,10 +1,36 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
-import weddingCardSketch from '@/assets/wedding-card-sketch.png';
-import brochuresSketch from '@/assets/brochures-sketch.png';
 
 const HeroSection = () => {
   const [showForm, setShowForm] = useState(false);
+  const [currentWord, setCurrentWord] = useState('');
+  const [wordIndex, setWordIndex] = useState(0);
+  const [charIndex, setCharIndex] = useState(0);
+  const [isDeleting, setIsDeleting] = useState(false);
+
+  const words = ['Design', 'Print', 'Deliver'];
+
+  useEffect(() => {
+    const typeSpeed = isDeleting ? 50 : 150;
+    const word = words[wordIndex];
+    
+    const timer = setTimeout(() => {
+      if (!isDeleting && charIndex < word.length) {
+        setCurrentWord(word.substring(0, charIndex + 1));
+        setCharIndex(charIndex + 1);
+      } else if (isDeleting && charIndex > 0) {
+        setCurrentWord(word.substring(0, charIndex - 1));
+        setCharIndex(charIndex - 1);
+      } else if (!isDeleting && charIndex === word.length) {
+        setTimeout(() => setIsDeleting(true), 1000);
+      } else if (isDeleting && charIndex === 0) {
+        setIsDeleting(false);
+        setWordIndex((wordIndex + 1) % words.length);
+      }
+    }, typeSpeed);
+
+    return () => clearTimeout(timer);
+  }, [charIndex, isDeleting, wordIndex, words]);
 
   const scrollToServices = () => {
     document.getElementById('services')?.scrollIntoView({ behavior: 'smooth' });
@@ -50,94 +76,45 @@ const HeroSection = () => {
 
       {/* Hero Section */}
       <section className="min-h-screen pt-20 flex items-center justify-center relative overflow-hidden">
-        <div className="max-w-7xl mx-auto px-6 grid lg:grid-cols-3 gap-12 items-center">
+        <div className="max-w-4xl mx-auto px-6 text-center">
           
-          {/* Left Illustration */}
-          <div className="hidden lg:flex justify-center">
-            <div className="relative">
-              <img 
-                src={weddingCardSketch} 
-                alt="Hand-drawn wedding card illustration" 
-                className="w-64 h-64 object-contain opacity-80 hover:opacity-100 transition-opacity"
-              />
-              <div className="absolute -top-4 -right-4 w-8 h-8 bg-accent/20 rounded-full blur-sm"></div>
-            </div>
-          </div>
-
-          {/* Center Content */}
-          <div className="text-center space-y-8">
-            {/* Main Brand Name */}
-            <div className="space-y-4">
-              <h1 className="font-script text-6xl md:text-8xl lg:text-9xl font-bold text-primary leading-none">
-                Karunya
-              </h1>
-              <h2 className="font-display text-3xl md:text-4xl lg:text-5xl text-foreground">
-                Offset Printers
-              </h2>
-            </div>
-
-            {/* Tagline */}
-            <div className="space-y-2">
-              <p className="font-display text-2xl md:text-3xl lg:text-4xl font-light text-primary italic">
-                Design. Print. Deliver.
-              </p>
-            </div>
-
-            {/* CTA Button */}
-            <div className="pt-6">
-              <Button 
-                size="lg"
-                onClick={handleRequestCallback}
-                className="px-8 py-4 text-lg font-semibold bg-primary hover:bg-primary/90 text-primary-foreground rounded-full shadow-medium hover:shadow-strong transition-all"
-              >
-                Request a Call Back
-              </Button>
-            </div>
-          </div>
-
-          {/* Right Side Details & Illustration */}
+          {/* Main Brand Name */}
           <div className="space-y-8">
-            {/* Services List */}
-            <div className="bg-card rounded-2xl p-6 shadow-soft border border-border">
-              <div className="space-y-4">
-                <div className="flex items-center gap-3">
-                  <div className="w-2 h-2 bg-primary rounded-full"></div>
-                  <span className="font-body text-foreground">Offset Printing Specialists</span>
-                </div>
-                <div className="flex items-center gap-3">
-                  <div className="w-2 h-2 bg-accent rounded-full"></div>
-                  <span className="font-body text-foreground">Wedding Cards & Invitations</span>
-                </div>
-                <div className="flex items-center gap-3">
-                  <div className="w-2 h-2 bg-primary rounded-full"></div>
-                  <span className="font-body text-foreground">Flex Printing & Design</span>
-                </div>
-                <div className="flex items-center gap-3">
-                  <div className="w-2 h-2 bg-accent rounded-full"></div>
-                  <span className="font-body text-foreground">Visiting Cards, Brochures, Diaries</span>
-                </div>
-              </div>
-            </div>
+            <h1 className="font-script text-6xl md:text-8xl lg:text-9xl font-bold text-primary leading-none">
+              Karunya
+            </h1>
+            <h2 className="font-display text-3xl md:text-4xl lg:text-5xl text-foreground">
+              Offset Printers
+            </h2>
+          </div>
 
-            {/* Bottom Illustration */}
-            <div className="flex justify-center">
-              <div className="relative">
-                <img 
-                  src={brochuresSketch} 
-                  alt="Hand-drawn brochures and visiting cards illustration" 
-                  className="w-48 h-48 object-contain opacity-80 hover:opacity-100 transition-opacity"
-                />
-                <div className="absolute -bottom-2 -left-2 w-6 h-6 bg-primary/20 rounded-full blur-sm"></div>
-              </div>
-            </div>
+          {/* Typing Animation */}
+          <div className="my-12">
+            <p className="font-display text-3xl md:text-4xl lg:text-5xl font-light text-primary italic min-h-[1.2em]">
+              {currentWord}
+              <span className="animate-pulse">|</span>
+            </p>
+          </div>
+
+          {/* CTA Button */}
+          <div className="pt-6">
+            <Button 
+              size="lg"
+              onClick={handleRequestCallback}
+              className="px-8 py-4 text-lg font-semibold bg-primary hover:bg-primary/90 text-primary-foreground rounded-full shadow-medium hover:shadow-strong transition-all"
+            >
+              Request a Call Back
+            </Button>
           </div>
 
         </div>
 
-        {/* Background Decorative Elements */}
-        <div className="absolute top-20 left-10 w-32 h-32 bg-accent/5 rounded-full blur-xl"></div>
-        <div className="absolute bottom-20 right-10 w-24 h-24 bg-primary/5 rounded-full blur-xl"></div>
-        <div className="absolute top-1/2 right-20 w-16 h-16 bg-accent/10 rounded-full blur-lg"></div>
+        {/* Animated Background Elements */}
+        <div className="absolute top-1/4 left-1/4 w-32 h-32 bg-primary/10 rounded-full blur-2xl animate-pulse"></div>
+        <div className="absolute top-1/2 right-1/4 w-24 h-24 bg-accent/15 rounded-full blur-xl animate-pulse delay-1000"></div>
+        <div className="absolute bottom-1/3 left-1/3 w-16 h-16 bg-primary/20 rounded-full blur-lg animate-pulse delay-2000"></div>
+        <div className="absolute top-1/3 right-1/3 w-20 h-20 bg-accent/10 rounded-full blur-2xl animate-pulse delay-500"></div>
+        <div className="absolute bottom-1/4 right-1/2 w-28 h-28 bg-primary/8 rounded-full blur-xl animate-pulse delay-1500"></div>
       </section>
 
       {/* Callback Form Modal */}
