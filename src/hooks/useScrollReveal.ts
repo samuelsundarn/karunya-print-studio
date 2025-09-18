@@ -14,14 +14,19 @@ export const useScrollReveal = (options: ScrollRevealOptions = {}) => {
     const element = elementRef.current;
     if (!element) return;
 
-    // Set initial state
-    element.style.opacity = '0';
-    element.style.transform = 'translateY(30px)';
-    element.style.transition = 'opacity 0.8s ease-out, transform 0.8s ease-out';
-    
-    if (delay > 0) {
-      element.style.transitionDelay = `${delay}ms`;
-    }
+    // Set initial state with a small delay to ensure DOM is ready
+    const setInitialStyles = () => {
+      element.style.opacity = '0';
+      element.style.transform = 'translateY(30px)';
+      element.style.transition = 'opacity 0.8s ease-out, transform 0.8s ease-out';
+      
+      if (delay > 0) {
+        element.style.transitionDelay = `${delay}ms`;
+      }
+    };
+
+    // Use requestAnimationFrame to ensure DOM is ready
+    requestAnimationFrame(setInitialStyles);
 
     const observer = new IntersectionObserver(
       (entries) => {
@@ -40,7 +45,14 @@ export const useScrollReveal = (options: ScrollRevealOptions = {}) => {
       }
     );
 
-    observer.observe(element);
+    // Observe after initial styles are set
+    const observeElement = () => {
+      if (element) {
+        observer.observe(element);
+      }
+    };
+
+    requestAnimationFrame(observeElement);
 
     return () => {
       if (element) {
@@ -150,13 +162,17 @@ export const useScrollRevealScale = (options: ScrollRevealOptions = {}) => {
     const element = elementRef.current;
     if (!element) return;
 
-    element.style.opacity = '0';
-    element.style.transform = 'scale(0.95)';
-    element.style.transition = 'opacity 0.6s ease-out, transform 0.6s ease-out';
-    
-    if (delay > 0) {
-      element.style.transitionDelay = `${delay}ms`;
-    }
+    const setInitialStyles = () => {
+      element.style.opacity = '0';
+      element.style.transform = 'scale(0.95)';
+      element.style.transition = 'opacity 0.6s ease-out, transform 0.6s ease-out';
+      
+      if (delay > 0) {
+        element.style.transitionDelay = `${delay}ms`;
+      }
+    };
+
+    requestAnimationFrame(setInitialStyles);
 
     const observer = new IntersectionObserver(
       (entries) => {
@@ -175,7 +191,13 @@ export const useScrollRevealScale = (options: ScrollRevealOptions = {}) => {
       }
     );
 
-    observer.observe(element);
+    const observeElement = () => {
+      if (element) {
+        observer.observe(element);
+      }
+    };
+
+    requestAnimationFrame(observeElement);
 
     return () => {
       if (element) {

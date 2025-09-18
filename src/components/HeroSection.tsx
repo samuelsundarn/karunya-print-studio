@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
+import { useScrollReveal, useScrollRevealScale } from '@/hooks/useScrollReveal';
 
 const HeroSection = () => {
   const [showForm, setShowForm] = useState(false);
@@ -9,8 +10,15 @@ const HeroSection = () => {
   const [wordIndex, setWordIndex] = useState(0);
   const [charIndex, setCharIndex] = useState(0);
   const [isDeleting, setIsDeleting] = useState(false);
+  const location = useLocation();
 
   const words = ['Design', 'Print', 'Deliver'];
+
+  // Scroll reveal refs
+  const titleRef = useScrollReveal({ delay: 200 });
+  const subtitleRef = useScrollReveal({ delay: 400 });
+  const typingRef = useScrollReveal({ delay: 600 });
+  const ctaRef = useScrollRevealScale({ delay: 800 });
 
   useEffect(() => {
     const typeSpeed = isDeleting ? 50 : 150;
@@ -38,13 +46,24 @@ const HeroSection = () => {
     setShowForm(true);
   };
 
+  const handleLogoClick = () => {
+    if (location.pathname === '/') {
+      // If on home page, scroll to top
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  };
+
   return (
     <>
       {/* Header Navigation */}
       <header className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-md border-b border-border">
         <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
           {/* Brand Text - Home Button */}
-          <Link to="/" className="font-handwriting text-2xl text-primary hover:text-primary/80 transition-colors cursor-pointer">
+          <Link 
+            to="/" 
+            onClick={handleLogoClick}
+            className="font-handwriting text-2xl text-primary hover:text-primary/80 transition-colors cursor-pointer"
+          >
             Karunya Offset Printers
           </Link>
           
@@ -147,16 +166,20 @@ const HeroSection = () => {
           
           {/* Main Brand Name */}
           <div className="space-y-8">
-            <h1 className="font-script text-6xl md:text-8xl lg:text-9xl font-bold text-primary leading-none">
-              Karunya
-            </h1>
-            <h2 className="font-display text-3xl md:text-4xl lg:text-5xl text-foreground">
-              Offset Printers
-            </h2>
+            <div ref={titleRef}>
+              <h1 className="font-script text-6xl md:text-8xl lg:text-9xl font-bold text-primary leading-none">
+                Karunya
+              </h1>
+            </div>
+            <div ref={subtitleRef}>
+              <h2 className="font-display text-3xl md:text-4xl lg:text-5xl text-foreground">
+                Offset Printers
+              </h2>
+            </div>
           </div>
 
           {/* Typing Animation */}
-          <div className="my-12">
+          <div ref={typingRef} className="my-12">
             <p className="font-display text-3xl md:text-4xl lg:text-5xl font-light text-primary italic min-h-[1.2em]">
               {currentWord}
               <span className="animate-pulse">|</span>
@@ -164,7 +187,7 @@ const HeroSection = () => {
           </div>
 
           {/* CTA Button */}
-          <div className="pt-6">
+          <div ref={ctaRef} className="pt-6">
             <Button 
               size="lg"
               onClick={handleRequestCallback}
