@@ -1,29 +1,554 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Karunya Offset Printers - Professional Printing & Design Services</title>
-    <meta name="description" content="Expert wedding card design, flex printing, offset printing, visiting cards, brochures & diaries. Quality printing services with professional design." />
-    <meta name="author" content="Karunya Offset Printers" />
+    <meta name="description" content="Expert wedding card design, flex printing, offset printing, visiting cards, brochures & diaries. Quality printing services with professional design.">
+    <meta name="author" content="Karunya Offset Printers">
     
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&family=Dancing+Script:wght@400;500;600;700&family=Caveat:wght@400;500;600;700&display=swap" rel="stylesheet">
 
-    <meta property="og:title" content="Karunya Offset Printers - Professional Printing Services" />
-    <meta property="og:description" content="Expert wedding card design, flex printing, offset printing, visiting cards, brochures & diaries." />
-    <meta property="og:type" content="website" />
-    <meta property="og:image" content="https://lovable.dev/opengraph-image-p98pqg.png" />
+    <meta property="og:title" content="Karunya Offset Printers - Professional Printing Services">
+    <meta property="og:description" content="Expert wedding card design, flex printing, offset printing, visiting cards, brochures & diaries.">
+    <meta property="og:type" content="website">
 
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:site" content="@lovable_dev" />
-    <meta name="twitter:image" content="https://lovable.dev/opengraph-image-p98pqg.png" />
-  </head>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Header Navigation -->
+    <header class="header">
+        <div class="header-container">
+            <a href="/" class="brand-logo">Karunya Offset Printers</a>
+            
+            <nav class="nav-menu" id="navMenu">
+                <a href="#services" class="nav-link">Services</a>
+                <a href="customers.html" class="nav-link">Customers</a>
+                <button class="btn btn-outline" id="requestCallbackBtn">Request Callback</button>
+                <a href="#contact" class="nav-link">Contact</a>
+                <a href="about.html" class="nav-link">About</a>
+            </nav>
 
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
-  </body>
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <svg class="menu-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                </svg>
+            </button>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="hero-container">
+            <div class="hero-content">
+                <h1 class="hero-title">Karunya</h1>
+                <h2 class="hero-subtitle">Offset Printers</h2>
+            </div>
+
+            <div class="typing-container">
+                <p class="typing-text">
+                    <span id="typingWord"></span>
+                    <span class="cursor">|</span>
+                </p>
+            </div>
+
+            <div class="hero-cta">
+                <button class="btn btn-primary btn-lg" id="heroCallbackBtn">
+                    Request a Call Back
+                </button>
+            </div>
+        </div>
+
+        <!-- Animated Background Elements -->
+        <div class="bg-element bg-element-1"></div>
+        <div class="bg-element bg-element-2"></div>
+        <div class="bg-element bg-element-3"></div>
+        <div class="bg-element bg-element-4"></div>
+        <div class="bg-element bg-element-5"></div>
+    </section>
+
+    <!-- Service Carousel -->
+    <section class="carousel-section">
+        <div class="carousel-container">
+            <div class="carousel-wrapper">
+                <div class="carousel-track" id="carouselTrack">
+                    <div class="carousel-slide active">
+                        <img src="src/assets/wedding-cards.jpg" alt="Wedding Cards" class="slide-image">
+                        <div class="slide-content">
+                            <div class="slide-badge">Most Popular</div>
+                            <h3 class="slide-title">Wedding Card Design</h3>
+                            <p class="slide-description">Elegant and memorable wedding invitations with custom designs, premium paper, and beautiful finishes that capture your special day perfectly.</p>
+                        </div>
+                    </div>
+                    <div class="carousel-slide">
+                        <img src="src/assets/flex-printing.jpg" alt="Flex Printing" class="slide-image">
+                        <div class="slide-content">
+                            <div class="slide-badge">Large Format</div>
+                            <h3 class="slide-title">Flex Printing</h3>
+                            <p class="slide-description">High-quality large format printing for banners, hoardings, and promotional displays with vibrant colors and weather-resistant materials.</p>
+                        </div>
+                    </div>
+                    <div class="carousel-slide">
+                        <img src="src/assets/business-printing.jpg" alt="Business Printing" class="slide-image">
+                        <div class="slide-content">
+                            <div class="slide-badge">Professional</div>
+                            <h3 class="slide-title">Business Printing</h3>
+                            <p class="slide-description">Professional business cards, letterheads, and corporate materials that make lasting impressions and elevate your brand presence.</p>
+                        </div>
+                    </div>
+                    <div class="carousel-slide">
+                        <img src="src/assets/diaries-notebooks.jpg" alt="Diaries & Notebooks" class="slide-image">
+                        <div class="slide-content">
+                            <div class="slide-badge">Custom</div>
+                            <h3 class="slide-title">Custom Diaries</h3>
+                            <p class="slide-description">Personalized planners, diaries, and notebooks for corporate gifts and personal use with quality binding and custom printing.</p>
+                        </div>
+                    </div>
+                </div>
+                <button class="carousel-btn carousel-prev" id="carouselPrev">
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+                    </svg>
+                </button>
+                <button class="carousel-btn carousel-next" id="carouselNext">
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                    </svg>
+                </button>
+            </div>
+            <div class="carousel-dots" id="carouselDots">
+                <button class="dot active"></button>
+                <button class="dot"></button>
+                <button class="dot"></button>
+                <button class="dot"></button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services-section" id="services">
+        <div class="services-container">
+            <div class="services-header">
+                <div class="badge">Our Services</div>
+                <h2 class="section-title">Professional Printing <span class="text-primary">Solutions</span></h2>
+                <p class="section-description">
+                    From elegant wedding invitations to corporate branding materials, we deliver exceptional quality 
+                    printing services that exceed expectations and bring your vision to life.
+                </p>
+            </div>
+
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-header">
+                        <div class="service-icon">
+                            <svg class="icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
+                            </svg>
+                        </div>
+                        <div class="popular-badge">
+                            <svg class="star-icon" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path>
+                            </svg>
+                            Popular
+                        </div>
+                    </div>
+                    <h3 class="service-title">Wedding Card Design & Printing</h3>
+                    <p class="service-description">Create beautiful, memorable wedding invitations with custom designs, premium paper, and elegant finishes.</p>
+                    <div class="service-features">
+                        <div class="feature">Custom Designs</div>
+                        <div class="feature">Gold/Silver Foiling</div>
+                        <div class="feature">Premium Paper</div>
+                        <div class="feature">Quick Delivery</div>
+                    </div>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-header">
+                        <div class="service-icon">
+                            <svg class="icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 4V2a1 1 0 011-1h8a1 1 0 011 1v2h4a1 1 0 110 2h-1v14a2 2 0 01-2 2H6a2 2 0 01-2-2V6H3a1 1 0 110-2h4z"></path>
+                            </svg>
+                        </div>
+                    </div>
+                    <h3 class="service-title">Flex Design & Printing</h3>
+                    <p class="service-description">Large format printing for banners, hoardings, and promotional displays with vibrant, weather-resistant materials.</p>
+                    <div class="service-features">
+                        <div class="feature">Any Size</div>
+                        <div class="feature">Weather Resistant</div>
+                        <div class="feature">Vibrant Colors</div>
+                        <div class="feature">Indoor/Outdoor</div>
+                    </div>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-header">
+                        <div class="service-icon">
+                            <svg class="icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                            </svg>
+                        </div>
+                    </div>
+                    <h3 class="service-title">Offset/Multicolor Printing</h3>
+                    <p class="service-description">High-quality offset printing for large quantities with precise color matching and professional finish.</p>
+                    <div class="service-features">
+                        <div class="feature">Bulk Orders</div>
+                        <div class="feature">Color Accuracy</div>
+                        <div class="feature">Cost Effective</div>
+                        <div class="feature">Professional Quality</div>
+                    </div>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-header">
+                        <div class="service-icon">
+                            <svg class="icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"></path>
+                            </svg>
+                        </div>
+                    </div>
+                    <h3 class="service-title">Visiting Cards</h3>
+                    <p class="service-description">Professional business cards that make lasting impressions with premium materials and modern designs.</p>
+                    <div class="service-features">
+                        <div class="feature">Multiple Finishes</div>
+                        <div class="feature">Quick Turnaround</div>
+                        <div class="feature">Bulk Discounts</div>
+                        <div class="feature">Design Support</div>
+                    </div>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-header">
+                        <div class="service-icon">
+                            <svg class="icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
+                            </svg>
+                        </div>
+                    </div>
+                    <h3 class="service-title">Brochures & Catalogs</h3>
+                    <p class="service-description">Eye-catching marketing materials that effectively communicate your brand message and products.</p>
+                    <div class="service-features">
+                        <div class="feature">Custom Layouts</div>
+                        <div class="feature">High-Quality Images</div>
+                        <div class="feature">Various Sizes</div>
+                        <div class="feature">Professional Design</div>
+                    </div>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-header">
+                        <div class="service-icon">
+                            <svg class="icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zM21 5a2 2 0 00-2-2h-4a2 2 0 00-2 2v12a4 4 0 004 4h4a2 2 0 002-2V5z"></path>
+                            </svg>
+                        </div>
+                    </div>
+                    <h3 class="service-title">Custom Diaries & Notebooks</h3>
+                    <p class="service-description">Personalized planners, diaries, and notebooks for corporate gifts and personal use.</p>
+                    <div class="service-features">
+                        <div class="feature">Custom Binding</div>
+                        <div class="feature">Logo Printing</div>
+                        <div class="feature">Quality Paper</div>
+                        <div class="feature">Various Formats</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Call to Action -->
+            <div class="services-cta">
+                <div class="cta-content">
+                    <div class="cta-header">
+                        <svg class="clock-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        </svg>
+                        <div class="badge">Quick Turnaround</div>
+                    </div>
+                    <h3 class="cta-title">Need a Custom Quote?</h3>
+                    <p class="cta-description">
+                        Every project is unique. Contact us for personalized pricing and expert consultation 
+                        on your printing requirements.
+                    </p>
+                    <div class="cta-buttons">
+                        <button class="btn btn-primary" onclick="scrollToSection('contact')">Get Free Quote</button>
+                        <button class="btn btn-outline" onclick="window.location.href='customers.html'">View Success Stories</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Callback Form Section -->
+    <section class="callback-section" id="contact">
+        <div class="callback-container">
+            <div class="callback-content">
+                <div class="callback-left">
+                    <div class="callback-header">
+                        <div class="badge">Contact Us</div>
+                        <h2 class="section-title">Ready to Start Your <span class="text-primary">Project?</span></h2>
+                        <p class="section-description">
+                            Get in touch with us today for a free consultation and quote. We're here to bring your printing vision to life.
+                        </p>
+                    </div>
+
+                    <div class="benefits-list">
+                        <div class="benefit-item">
+                            <svg class="check-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                            </svg>
+                            <div>
+                                <h4>Free Design Consultation</h4>
+                                <p>Expert advice on design, materials, and printing options</p>
+                            </div>
+                        </div>
+                        <div class="benefit-item">
+                            <svg class="check-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                            </svg>
+                            <div>
+                                <h4>Quick Turnaround</h4>
+                                <p>Fast delivery without compromising on quality</p>
+                            </div>
+                        </div>
+                        <div class="benefit-item">
+                            <svg class="check-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                            </svg>
+                            <div>
+                                <h4>Competitive Pricing</h4>
+                                <p>Best value for money with transparent pricing</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="contact-info">
+                        <div class="contact-item">
+                            <svg class="contact-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
+                            </svg>
+                            <div>
+                                <h4>Call Us</h4>
+                                <p>+91 XXXXX XXXXX</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <svg class="contact-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                            </svg>
+                            <div>
+                                <h4>Email Us</h4>
+                                <p>info@karunyaoffset.com</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="callback-right">
+                    <div class="form-container" id="formContainer">
+                        <div class="form-header">
+                            <h3>Request Callback</h3>
+                            <p>Fill out this form and we'll get back to you within 24 hours</p>
+                        </div>
+
+                        <form class="callback-form" id="callbackForm">
+                            <div class="form-group">
+                                <label for="name">Full Name *</label>
+                                <input type="text" id="name" name="name" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="phone">Phone Number *</label>
+                                <input type="tel" id="phone" name="phone" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Email Address</label>
+                                <input type="email" id="email" name="email">
+                            </div>
+                            <div class="form-group">
+                                <label for="service">Service Interest</label>
+                                <select id="service" name="service">
+                                    <option value="">Select a service</option>
+                                    <option value="wedding-cards">Wedding Card Design</option>
+                                    <option value="flex-printing">Flex Printing</option>
+                                    <option value="offset-printing">Offset Printing</option>
+                                    <option value="visiting-cards">Visiting Cards</option>
+                                    <option value="brochures">Brochures & Catalogs</option>
+                                    <option value="custom-diaries">Custom Diaries</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="message">Additional Requirements</label>
+                                <textarea id="message" name="message" rows="4" placeholder="Tell us about your project requirements..."></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary btn-full">
+                                <span class="btn-text">Send Message</span>
+                                <span class="btn-loading" style="display: none;">Sending...</span>
+                            </button>
+                        </form>
+
+                        <div class="success-message" id="successMessage" style="display: none;">
+                            <div class="success-icon">
+                                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                </svg>
+                            </div>
+                            <h3>Thank You!</h3>
+                            <p>Your callback request has been received. We'll contact you within 24 hours to discuss your project requirements.</p>
+                            <button class="btn btn-outline" onclick="resetForm()">Send Another Request</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-content">
+                <!-- Company Info -->
+                <div class="footer-company">
+                    <div class="footer-brand">
+                        <h2 class="footer-title">
+                            <span class="text-accent">Karunya</span><br>
+                            <span class="footer-script">Offset Printers</span>
+                        </h2>
+                        <div class="footer-badge">Crafting Excellence Since Years</div>
+                    </div>
+                    
+                    <p class="footer-description">
+                        Your trusted partner for all printing and design needs. We combine traditional craftsmanship 
+                        with modern technology to deliver exceptional quality that exceeds expectations.
+                    </p>
+
+                    <div class="footer-contact">
+                        <div class="contact-item">
+                            <svg class="contact-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
+                            </svg>
+                            <span>+91 XXXXX XXXXX</span>
+                        </div>
+                        <div class="contact-item">
+                            <svg class="contact-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                            </svg>
+                            <span>info@karunyaoffset.com</span>
+                        </div>
+                        <div class="contact-item">
+                            <svg class="contact-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                            </svg>
+                            <span>Shop Address<br>City, State - PIN Code</span>
+                        </div>
+                        <div class="contact-item">
+                            <svg class="contact-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                            </svg>
+                            <span>Mon - Sat: 9:00 AM - 8:00 PM</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Services -->
+                <div class="footer-services">
+                    <h3 class="footer-heading">Our Services</h3>
+                    <ul class="footer-links">
+                        <li><button onclick="scrollToSection('services')">Wedding Card Design & Printing</button></li>
+                        <li><button onclick="scrollToSection('services')">Flex Design & Printing</button></li>
+                        <li><button onclick="scrollToSection('services')">Offset/Multicolor Printing</button></li>
+                        <li><button onclick="scrollToSection('services')">Visiting Cards</button></li>
+                        <li><button onclick="scrollToSection('services')">Brochures & Catalogs</button></li>
+                        <li><button onclick="scrollToSection('services')">Custom Diaries & Notebooks</button></li>
+                    </ul>
+                </div>
+
+                <!-- Quick Links -->
+                <div class="footer-links-section">
+                    <h3 class="footer-heading">Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="about.html">About Us</a></li>
+                        <li><button onclick="scrollToSection('services')">Our Services</button></li>
+                        <li><a href="customers.html">Success Stories</a></li>
+                        <li><button onclick="scrollToSection('contact')">Contact Us</button></li>
+                        <li><button onclick="scrollToSection('contact')">Get Quote</button></li>
+                    </ul>
+
+                    <div class="social-media">
+                        <h4 class="social-title">Connect With Us</h4>
+                        <div class="social-links">
+                            <button class="social-btn">
+                                <svg fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"/>
+                                </svg>
+                            </button>
+                            <button class="social-btn">
+                                <svg fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M22.46 6c-.77.35-1.6.58-2.46.69.88-.53 1.56-1.37 1.88-2.38-.83.5-1.75.85-2.72 1.05C18.37 4.5 17.26 4 16 4c-2.35 0-4.27 1.92-4.27 4.29 0 .34.04.67.11.98C8.28 9.09 5.11 7.38 3 4.79c-.37.63-.58 1.37-.58 2.15 0 1.49.75 2.81 1.91 3.56-.71 0-1.37-.2-1.95-.5v.03c0 2.08 1.48 3.82 3.44 4.21a4.22 4.22 0 0 1-1.93.07 4.28 4.28 0 0 0 4 2.98 8.521 8.521 0 0 1-5.33 1.84c-.34 0-.68-.02-1.02-.06C3.44 20.29 5.7 21 8.12 21 16 21 20.33 14.46 20.33 8.79c0-.19 0-.37-.01-.56.84-.6 1.56-1.36 2.14-2.23z"/>
+                                </svg>
+                            </button>
+                            <button class="social-btn">
+                                <svg fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M12.017 0C5.396 0 .029 5.367.029 11.987c0 5.079 3.158 9.417 7.618 11.174-.105-.949-.199-2.403.041-3.439.219-.937 1.406-5.957 1.406-5.957s-.359-.72-.359-1.781c0-1.663.967-2.911 2.168-2.911 1.024 0 1.518.769 1.518 1.688 0 1.029-.653 2.567-.992 3.992-.285 1.193.6 2.165 1.775 2.165 2.128 0 3.768-2.245 3.768-5.487 0-2.861-2.063-4.869-5.008-4.869-3.41 0-5.409 2.562-5.409 5.199 0 1.033.394 2.143.889 2.741.097.118.112.22.083.341-.09.381-.293 1.189-.334 1.355-.053.225-.172.271-.402.165-1.495-.69-2.433-2.878-2.433-4.646 0-3.776 2.748-7.252 7.92-7.252 4.158 0 7.392 2.967 7.392 6.923 0 4.135-2.607 7.462-6.233 7.462-1.214 0-2.357-.629-2.75-1.378l-.748 2.853c-.271 1.043-1.002 2.35-1.492 3.146C9.57 23.812 10.763 24.009 12.017 24.009c6.624 0 11.99-5.367 11.99-11.988C24.007 5.367 18.641.001.012.001z"/>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-separator"></div>
+
+            <div class="footer-bottom">
+                <div class="footer-copyright">
+                    © 2024 Karunya Offset Printers. All rights reserved.
+                </div>
+                <div class="footer-love">
+                    <span>Made with</span>
+                    <svg class="heart-icon" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/>
+                    </svg>
+                    <span>for quality printing</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Floating WhatsApp Button -->
+        <div class="whatsapp-float">
+            <button class="whatsapp-btn">
+                <svg fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.885 3.488"/>
+                </svg>
+            </button>
+        </div>
+    </footer>
+
+    <!-- Callback Modal -->
+    <div class="modal-overlay" id="callbackModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Request Callback</h3>
+                <button class="modal-close" id="closeModal">
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                    </svg>
+                </button>
+            </div>
+            
+            <form class="modal-form" id="modalForm">
+                <div class="form-group">
+                    <label for="modalName">Name</label>
+                    <input type="text" id="modalName" name="name" placeholder="Your full name" required>
+                </div>
+                <div class="form-group">
+                    <label for="modalPhone">Phone Number</label>
+                    <input type="tel" id="modalPhone" name="phone" placeholder="Your phone number" required>
+                </div>
+                <button type="submit" class="btn btn-primary btn-full">Submit Request</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
 </html>
