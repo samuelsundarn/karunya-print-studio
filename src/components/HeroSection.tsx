@@ -4,6 +4,7 @@ import { Button } from '@/components/ui/button';
 
 const HeroSection = () => {
   const [showForm, setShowForm] = useState(false);
+  const [showMobileMenu, setShowMobileMenu] = useState(false);
   const [currentWord, setCurrentWord] = useState('');
   const [wordIndex, setWordIndex] = useState(0);
   const [charIndex, setCharIndex] = useState(0);
@@ -63,11 +64,65 @@ const HeroSection = () => {
           </nav>
 
           {/* Mobile Menu Button */}
-          <button className="md:hidden p-2 text-foreground">
+          <button 
+            onClick={() => setShowMobileMenu(!showMobileMenu)}
+            className="md:hidden p-2 text-foreground hover:text-primary transition-colors"
+          >
             <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+              <path 
+                strokeLinecap="round" 
+                strokeLinejoin="round" 
+                strokeWidth={2} 
+                d={showMobileMenu ? "M6 18L18 6M6 6l12 12" : "M4 6h16M4 12h16M4 18h16"} 
+              />
             </svg>
           </button>
+          
+          {/* Mobile Menu */}
+          {showMobileMenu && (
+            <div className="absolute top-full left-0 right-0 bg-background/95 backdrop-blur-md border-b border-border md:hidden">
+              <nav className="flex flex-col gap-4 p-6">
+                <a 
+                  href="#services" 
+                  className="font-body text-foreground hover:text-primary transition-colors"
+                  onClick={() => setShowMobileMenu(false)}
+                >
+                  Services
+                </a>
+                <Link 
+                  to="/customers" 
+                  className="font-body text-foreground hover:text-primary transition-colors"
+                  onClick={() => setShowMobileMenu(false)}
+                >
+                  Customers
+                </Link>
+                <Button 
+                  variant="outline" 
+                  onClick={() => {
+                    handleRequestCallback();
+                    setShowMobileMenu(false);
+                  }}
+                  className="font-body w-fit"
+                >
+                  Request Callback
+                </Button>
+                <a 
+                  href="#contact" 
+                  className="font-body text-foreground hover:text-primary transition-colors"
+                  onClick={() => setShowMobileMenu(false)}
+                >
+                  Contact
+                </a>
+                <Link 
+                  to="/about" 
+                  className="font-body text-foreground hover:text-primary transition-colors"
+                  onClick={() => setShowMobileMenu(false)}
+                >
+                  About
+                </Link>
+              </nav>
+            </div>
+          )}
         </div>
       </header>
 

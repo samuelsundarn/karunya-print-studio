@@ -61,14 +61,87 @@ const PageLoader = ({ isLoading }: PageLoaderProps) => {
           <div className="w-2 h-2 bg-primary rounded-full animate-pulse delay-300"></div>
         </div>
 
-        {/* Printing Press Animation */}
-        <div className="relative w-24 h-16 mx-auto">
-          <div className="absolute inset-0 border-2 border-primary/30 rounded-lg">
-            <div className="absolute top-2 left-2 right-2 h-1 bg-accent animate-pulse"></div>
-            <div className="absolute top-6 left-2 right-2 h-1 bg-primary animate-pulse delay-200"></div>
-            <div className="absolute top-10 left-2 right-2 h-1 bg-accent animate-pulse delay-400"></div>
-          </div>
-          <div className="absolute -bottom-1 left-1/2 transform -translate-x-1/2 w-6 h-2 bg-primary/20 rounded-full animate-pulse delay-100"></div>
+        {/* Printing Press SVG Animation */}
+        <div className="relative w-32 h-24 mx-auto">
+          <svg 
+            viewBox="0 0 120 90" 
+            className="w-full h-full"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            {/* Printing Press Base */}
+            <rect x="10" y="50" width="100" height="35" rx="4" 
+              className="fill-primary/20 stroke-primary/40" strokeWidth="1"/>
+            
+            {/* Paper Feed */}
+            <rect x="20" y="45" width="80" height="8" rx="2" 
+              className="fill-card stroke-border" strokeWidth="1"/>
+            
+            {/* Printing Cylinders */}
+            <circle cx="30" cy="35" r="8" 
+              className="fill-accent/60 stroke-accent" strokeWidth="1">
+              <animateTransform
+                attributeName="transform"
+                attributeType="XML"
+                type="rotate"
+                from="0 30 35"
+                to="360 30 35"
+                dur="2s"
+                repeatCount="indefinite"/>
+            </circle>
+            <circle cx="60" cy="35" r="8" 
+              className="fill-primary/60 stroke-primary" strokeWidth="1">
+              <animateTransform
+                attributeName="transform"
+                attributeType="XML"
+                type="rotate"
+                from="0 60 35"
+                to="-360 60 35"
+                dur="1.8s"
+                repeatCount="indefinite"/>
+            </circle>
+            <circle cx="90" cy="35" r="8" 
+              className="fill-accent/60 stroke-accent" strokeWidth="1">
+              <animateTransform
+                attributeName="transform"
+                attributeType="XML"
+                type="rotate"
+                from="0 90 35"
+                to="360 90 35"
+                dur="2.2s"
+                repeatCount="indefinite"/>
+            </circle>
+            
+            {/* Moving Paper */}
+            <rect x="15" y="47" width="12" height="4" rx="1" 
+              className="fill-background stroke-border" strokeWidth="0.5">
+              <animateTransform
+                attributeName="transform"
+                attributeType="XML"
+                type="translate"
+                values="0,0; 78,0; 0,0"
+                dur="3s"
+                repeatCount="indefinite"/>
+            </rect>
+            
+            {/* Ink Droplets */}
+            <circle cx="30" cy="25" r="1.5" className="fill-primary animate-pulse">
+              <animate attributeName="opacity" values="0;1;0" dur="1s" repeatCount="indefinite"/>
+            </circle>
+            <circle cx="60" cy="25" r="1.5" className="fill-accent animate-pulse">
+              <animate attributeName="opacity" values="0;1;0" dur="1.2s" repeatCount="indefinite"/>
+            </circle>
+            <circle cx="90" cy="25" r="1.5" className="fill-primary animate-pulse">
+              <animate attributeName="opacity" values="0;1;0" dur="0.8s" repeatCount="indefinite"/>
+            </circle>
+            
+            {/* Control Panel */}
+            <rect x="85" y="55" width="20" height="25" rx="2" 
+              className="fill-muted stroke-border" strokeWidth="1"/>
+            <circle cx="90" cy="62" r="2" className="fill-primary animate-pulse"/>
+            <circle cx="100" cy="62" r="2" className="fill-accent animate-pulse delay-300"/>
+            <rect x="87" y="68" width="16" height="2" className="fill-border"/>
+            <rect x="87" y="72" width="16" height="2" className="fill-border"/>
+          </svg>
         </div>
 
       </div>

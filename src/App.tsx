@@ -17,8 +17,8 @@ const AppContent = () => {
   const location = useLocation();
 
   useEffect(() => {
-    // Show loading for about and customers pages
-    if (location.pathname === '/about' || location.pathname === '/customers') {
+    // Show loading for all page changes (except home page)
+    if (location.pathname !== '/') {
       setIsLoading(true);
       const timer = setTimeout(() => {
         setIsLoading(false);
