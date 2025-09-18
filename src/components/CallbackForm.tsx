@@ -8,6 +8,7 @@ import { Textarea } from '@/components/ui/textarea';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Phone, Mail, MapPin, Clock, CheckCircle, AlertCircle } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
+import { useScrollReveal, useScrollRevealFromLeft, useScrollRevealFromRight } from '@/hooks/useScrollReveal';
 
 interface FormData {
   name: string;
@@ -28,6 +29,10 @@ const CallbackForm = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
   const { toast } = useToast();
+  
+  const headerRef = useScrollReveal();
+  const leftColumnRef = useScrollRevealFromLeft({ delay: 200 });
+  const rightColumnRef = useScrollRevealFromRight({ delay: 400 });
 
   const handleInputChange = (field: keyof FormData, value: string) => {
     setFormData(prev => ({
@@ -88,7 +93,7 @@ const CallbackForm = () => {
   return (
     <section id="contact" className="py-20 bg-subtle-gradient">
       <div className="max-w-7xl mx-auto px-4">
-        <div className="text-center mb-16">
+        <div ref={headerRef} className="text-center mb-16">
           <Badge variant="outline" className="mb-4 text-primary border-primary/20">
             Get In Touch
           </Badge>
@@ -103,7 +108,7 @@ const CallbackForm = () => {
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 max-w-6xl mx-auto">
           {/* Contact Information */}
-          <div className="space-y-8">
+          <div ref={leftColumnRef} className="space-y-8">
             <div>
               <h3 className="font-display text-2xl font-bold text-foreground mb-6">
                 Why Choose Karunya Offset Printers?
@@ -176,7 +181,7 @@ const CallbackForm = () => {
           </div>
 
           {/* Callback Form */}
-          <Card className="border-border/50 shadow-medium">
+          <Card ref={rightColumnRef} className="border-border/50 shadow-medium">
             <CardHeader>
               <CardTitle className="font-display text-xl">Request Callback</CardTitle>
               <CardDescription>

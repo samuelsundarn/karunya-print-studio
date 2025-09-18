@@ -1,6 +1,9 @@
 import React from 'react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
+import { Button } from '@/components/ui/button';
+import { useNavigate } from 'react-router-dom';
+import { useScrollReveal, useScrollRevealScale } from '@/hooks/useScrollReveal';
 import { 
   Heart, 
   MonitorSpeaker, 
@@ -9,7 +12,9 @@ import {
   BookOpen, 
   Palette,
   Clock,
-  Star
+  Star,
+  Award,
+  CheckCircle
 } from 'lucide-react';
 
 const services = [
@@ -53,10 +58,26 @@ const services = [
 ];
 
 const ServicesSection = () => {
+  const navigate = useNavigate();
+  const headerRef = useScrollReveal();
+  const ctaRef = useScrollReveal({ delay: 200 });
+
+  const handleGetQuote = () => {
+    // Scroll to contact section instead of navigating
+    const contactElement = document.getElementById('contact');
+    if (contactElement) {
+      contactElement.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
+  const handleViewStories = () => {
+    navigate('/customers');
+  };
+
   return (
     <section id="services" className="py-20 bg-background">
       <div className="max-w-7xl mx-auto px-4">
-        <div className="text-center mb-16">
+        <div ref={headerRef} className="text-center mb-16">
           <Badge variant="outline" className="mb-4 text-primary border-primary/20">
             Our Services
           </Badge>
@@ -72,13 +93,12 @@ const ServicesSection = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {services.map((service, index) => {
             const IconComponent = service.icon;
+            const cardRef = useScrollRevealScale({ delay: index * 100 });
             return (
               <Card 
-                key={index} 
-                className={`group hover:shadow-medium transition-all duration-300 hover:-translate-y-2 border-border/50 ${
-                  index % 2 === 0 ? 'fade-in' : 'scale-in'
-                }`}
-                style={{ animationDelay: `${index * 150}ms` }}
+                key={index}
+                ref={cardRef}
+                className={`group hover:shadow-medium transition-all duration-300 hover:-translate-y-2 border-border/50`}
               >
                 <CardHeader className="pb-4">
                   <div className="flex items-center justify-between mb-4">
@@ -118,7 +138,7 @@ const ServicesSection = () => {
         </div>
 
         {/* Call to Action */}
-        <div className="text-center mt-16">
+        <div ref={ctaRef} className="text-center mt-16">
           <div className="bg-subtle-gradient rounded-2xl p-8 md:p-12 shadow-soft">
             <div className="flex items-center justify-center mb-6">
               <Clock className="h-6 w-6 text-primary mr-2" />
@@ -134,18 +154,22 @@ const ServicesSection = () => {
               on your printing requirements.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <button 
-                onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
-                className="bg-primary hover:bg-primary/90 text-primary-foreground px-6 py-3 rounded-lg font-medium transition-colors duration-300"
+              <Button 
+                size="lg" 
+                onClick={handleGetQuote}
+                className="px-8 py-3 bg-primary hover:bg-primary/90 text-primary-foreground rounded-full shadow-medium hover:shadow-strong transition-all"
               >
                 Get Free Quote
-              </button>
-              <button 
-                onClick={() => window.location.href = '/customers'}
-                className="border border-border hover:bg-muted px-6 py-3 rounded-lg font-medium transition-colors duration-300"
+              </Button>
+              <Button 
+                size="lg" 
+                variant="outline" 
+                onClick={handleViewStories}
+                className="px-8 py-3 border-primary text-primary hover:bg-primary hover:text-primary-foreground rounded-full transition-all"
               >
+                <Award className="h-5 w-5 mr-2" />
                 View Success Stories
-              </button>
+              </Button>
             </div>
           </div>
         </div>

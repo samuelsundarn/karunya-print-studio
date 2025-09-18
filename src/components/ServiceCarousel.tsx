@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { useScrollReveal, useScrollRevealScale } from '@/hooks/useScrollReveal';
 
 import weddingCards from '@/assets/wedding-cards.jpg';
 import flexPrinting from '@/assets/flex-printing.jpg';
@@ -44,6 +45,9 @@ const ServiceCarousel = () => {
   const carouselRef = useRef<HTMLDivElement>(null);
   const startXRef = useRef<number>(0);
   const isDraggingRef = useRef<boolean>(false);
+  
+  const headerRef = useScrollReveal();
+  const carouselContainerRef = useScrollRevealScale({ delay: 300 });
 
   // Auto-play functionality
   useEffect(() => {
@@ -96,7 +100,7 @@ const ServiceCarousel = () => {
   return (
     <section className="py-20 bg-subtle-gradient">
       <div className="max-w-7xl mx-auto px-4">
-        <div className="text-center mb-12">
+        <div ref={headerRef} className="text-center mb-12">
           <h2 className="font-display text-4xl md:text-5xl font-bold text-foreground mb-4">
             Our Featured <span className="text-primary">Services</span>
           </h2>
@@ -105,7 +109,7 @@ const ServiceCarousel = () => {
           </p>
         </div>
 
-        <div className="relative max-w-5xl mx-auto">
+        <div ref={carouselContainerRef} className="relative max-w-5xl mx-auto">
           {/* Carousel Container */}
           <div
             ref={carouselRef}

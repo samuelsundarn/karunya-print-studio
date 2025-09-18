@@ -59,7 +59,17 @@ const HeroSection = () => {
             >
               Request Callback
             </Button>
-            <a href="#contact" className="font-body text-foreground hover:text-primary transition-colors">Contact</a>
+            <button 
+              onClick={() => {
+                const contactElement = document.getElementById('contact');
+                if (contactElement) {
+                  contactElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+              }}
+              className="font-body text-foreground hover:text-primary transition-colors"
+            >
+              Contact
+            </button>
             <Link to="/about" className="font-body text-foreground hover:text-primary transition-colors">About</Link>
           </nav>
 
@@ -106,13 +116,18 @@ const HeroSection = () => {
                 >
                   Request Callback
                 </Button>
-                <a 
-                  href="#contact" 
+                <button 
+                  onClick={() => {
+                    const contactElement = document.getElementById('contact');
+                    if (contactElement) {
+                      contactElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }
+                    setShowMobileMenu(false);
+                  }}
                   className="font-body text-foreground hover:text-primary transition-colors"
-                  onClick={() => setShowMobileMenu(false)}
                 >
                   Contact
-                </a>
+                </button>
                 <Link 
                   to="/about" 
                   className="font-body text-foreground hover:text-primary transition-colors"
