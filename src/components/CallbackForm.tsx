@@ -27,6 +27,8 @@ interface FormData {
   message: string;
 }
 
+const FALLBACK_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxzDqPOQTQ5Zv_ILqLtTLqwE2CRnxUOjqV-tX8ysmDSBGQuigAkJCTkW16GSMKCUlzzGg/exec';
+
 const CallbackForm = () => {
   const [formData, setFormData] = useState<FormData>({
     name: '',
@@ -64,15 +66,7 @@ const CallbackForm = () => {
       return;
     }
 
-    const scriptUrl = import.meta.env.VITE_GOOGLE_APPS_SCRIPT_URL as string | undefined;
-    if (!scriptUrl) {
-      toast({
-        title: "Configuration missing",
-        description: "Add VITE_GOOGLE_APPS_SCRIPT_URL to your .env.local with your Apps Script Web App URL.",
-        variant: "destructive"
-      });
-      return;
-    }
+    const scriptUrl = (import.meta.env.VITE_GOOGLE_APPS_SCRIPT_URL as string | undefined) || FALLBACK_SCRIPT_URL;
 
     setIsSubmitting(true);
 
