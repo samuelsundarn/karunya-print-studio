@@ -9,6 +9,15 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { Phone, Mail, MapPin, Clock, CheckCircle, AlertCircle } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 import { useScrollReveal, useScrollRevealFromLeft, useScrollRevealFromRight } from '@/hooks/useScrollReveal';
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+} from '@/components/ui/alert-dialog';
 
 interface FormData {
   name: string;
@@ -28,6 +37,7 @@ const CallbackForm = () => {
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
+  const [showSuccessPrompt, setShowSuccessPrompt] = useState(false);
   const { toast } = useToast();
   
   const headerRef = useScrollReveal();
@@ -54,14 +64,45 @@ const CallbackForm = () => {
       return;
     }
 
+    const scriptUrl = import.meta.env.VITE_GOOGLE_APPS_SCRIPT_URL as string | undefined;
+    if (!scriptUrl) {
+      toast({
+        title: "Configuration missing",
+        description: "Add VITE_GOOGLE_APPS_SCRIPT_URL to your .env.local with your Apps Script Web App URL.",
+        variant: "destructive"
+      });
+      return;
+    }
+
     setIsSubmitting(true);
 
     try {
-      // Simulate API call - In real implementation, this would connect to Google Sheets
-      // For now, we'll just show success after a delay
-      await new Promise(resolve => setTimeout(resolve, 2000));
+      // Send as URL-encoded form data for best compatibility with Apps Script
+      const payload = new URLSearchParams({
+        name: formData.name,
+        phone: formData.phone,
+        email: formData.email,
+        service: formData.service,
+        message: formData.message,
+        timestamp: new Date().toISOString()
+      });
+
+      const response = await fetch(scriptUrl, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
+        },
+        body: payload.toString(),
+        mode: 'no-cors',
+      });
+
+      const succeeded = response.ok || response.type === 'opaque';
+      if (!succeeded) {
+        throw new Error(`Submission failed with status ${response.status}`);
+      }
       
       setIsSuccess(true);
+      setShowSuccessPrompt(true);
       toast({
         title: "Request submitted successfully!",
         description: "We will contact you within 24 hours. Thank you for choosing Karunya Offset Printers!",
@@ -279,6 +320,20 @@ const CallbackForm = () => {
           </Card>
         </div>
       </div>
+
+      <AlertDialog open={showSuccessPrompt} onOpenChange={setShowSuccessPrompt}>
+        <AlertDialogContent>
+          <AlertDialogHeader>
+            <AlertDialogTitle>Submission received</AlertDialogTitle>
+            <AlertDialogDescription>
+              Thank you! Your request has been submitted. We'll reach out within 24 hours.
+            </AlertDialogDescription>
+          </AlertDialogHeader>
+          <AlertDialogFooter>
+            <AlertDialogAction onClick={() => setShowSuccessPrompt(false)}>OK</AlertDialogAction>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
     </section>
   );
 };
